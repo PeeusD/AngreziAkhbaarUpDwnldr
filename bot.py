@@ -138,10 +138,13 @@ def schedulling_fun():
                 else:
                         print("website down")         
 
+schedule.every().day.at("01:30").do(reset_url_status)   #IST 07:00
+schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO IST 07:10
+schedule.every().day.at("02:00").do(schedulling_fun)   #IST 07:30
+schedule.every().day.at("02:15").do(schedulling_fun)    #IST 07:45
+schedule.every().day.at("02:35").do(schedulling_fun)     #IST 08:05 #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
+schedule.every().day.at("02:50").do(schedulling_fun)    #IST 08:20
 
-schedule.every().day.at("03:15").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO GMT 01:40
-schedule.every().day.at("01:55").do(schedulling_fun)  #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
-schedule.every().day.at("01:30").do(reset_url_status)  
 while True:
   
     # Checks whether a scheduled task... 
