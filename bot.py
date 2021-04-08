@@ -139,7 +139,7 @@ def schedulling_fun():
                         print("website down")         
 
 
-schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO GMT 01:40
+schedule.every().day.at("03:15").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO GMT 01:40
 schedule.every().day.at("01:55").do(schedulling_fun)  #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
 schedule.every().day.at("01:30").do(reset_url_status)  
 while True:
