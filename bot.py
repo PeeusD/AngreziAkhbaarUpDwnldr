@@ -5,7 +5,6 @@ from telegram import Bot, ParseMode
 from telegram.ext import Updater
 from os import getenv
 from dotenv import load_dotenv
-#from datetime import date
 load_dotenv()
 import schedule
 
@@ -102,7 +101,7 @@ def schedulling_fun():
                             today_dt = today_dt.strftime("%d").replace("0","")
                         
                             #checking with todays date with the uploaded date
-                            if int((ppr_name.find(today_dt))) > 1 :
+                            if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
                                     #downloading...
                                 
                                 # res = requests.get(full_dwnldlink, stream = True)
