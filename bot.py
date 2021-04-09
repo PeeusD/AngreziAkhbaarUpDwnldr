@@ -41,8 +41,6 @@ def schedulling_fun():
 
                             # applying random headers to avoiding flood errors..
                 headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36' }
-                              
-                
 
                 # rand_heads = random.randint(0,4)  # --->  randint() includes both params values....
             
@@ -60,16 +58,15 @@ def schedulling_fun():
                         all_links = soup.select(".entry-content.mh-clearfix p a")
 
                         nxtpglink = all_links[4].get('href')
-                        print(nxtpglink)
+                        
                     else:      #else other epaper will come here
 
                         all_links = soup.select(".entry-content p span a")
                         #random delay between both the fetching request 
                     
                         nxtpglink = all_links[0].get('href')
-                        print(nxtpglink)
-                    
-              
+                        
+                                
                     time.sleep(random.randint(5,9))
 
                     #moving to next page....
@@ -91,14 +88,14 @@ def schedulling_fun():
 
                                 ttl_siz = len(ppr_name)-1
                                 ppr_name = ppr_name[ttl_siz]
-                                print("Captured Downldlink ---> ",full_dwnldlink)
+                                #print("Captured Downldlink ---> ",full_dwnldlink)
                                 print(ppr_name)
                             
 
-
                             today_dt = datetime.datetime.now()
-
-                            today_dt = today_dt.strftime("%d").replace("0","")
+                            today_dt = today_dt.strftime("%d")
+                            if today_dt[0]=="0":
+                               today_dt = today_dt.replace("0","")
                         
                             #checking with todays date with the uploaded date
                             if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
@@ -132,11 +129,8 @@ def schedulling_fun():
                     
                     time.sleep(random.randint(10,20))
 
-
-
-       
                 else:
-                        print("website down")         
+                      print("website down")         
 
 schedule.every().day.at("01:30").do(reset_url_status)   #IST 07:00
 schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO IST 07:10
@@ -157,9 +151,4 @@ updater = Updater(TOKEN)
 updater.start_polling()
 updater.idle()
 
-
-
-
-
-
-        
+   
