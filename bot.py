@@ -5,7 +5,7 @@ from telegram import Bot, ParseMode
 from telegram.ext import Updater
 from os import getenv
 from dotenv import load_dotenv
-from datetime import date
+#from datetime import date
 load_dotenv()
 import schedule
 
@@ -97,8 +97,9 @@ def schedulling_fun():
                             
 
 
-                            today = date.today()
-                            today_dt = today.strftime("%d")
+                            today_dt = datetime.datetime.now()
+
+                            today_dt = today_dt.strftime("%d").replace("0","")
                         
                             #checking with todays date with the uploaded date
                             if int((ppr_name.find(today_dt))) > 1 :
