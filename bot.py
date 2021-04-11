@@ -58,7 +58,7 @@ def schedulling_fun():
                         
                         
                 if url[i][1] == False: #chhecking that ppr already uploaded or not.... 
-                    
+
                         res = requests.get(url[i][0], headers = headers[rand_heads])  
                         if res.status_code == 200 :
                             print(res)
@@ -109,7 +109,7 @@ def schedulling_fun():
                                     today_dt = datetime.datetime.now()
                                     today_dt = today_dt.strftime("%d")
                                     if today_dt[0]=="0":
-                                    today_dt = today_dt.replace("0","")
+                                       today_dt = today_dt.replace("0","")
                                         
                                     
                                     
