@@ -5,7 +5,7 @@ from telegram import Bot, ParseMode
 from telegram.ext import Updater
 from os import getenv
 from dotenv import load_dotenv
-from datetime import date
+#from datetime import date
 load_dotenv()
 import schedule
 
@@ -41,15 +41,22 @@ def schedulling_fun():
         for i in range(len(url)):        
 
                             # applying random headers to avoiding flood errors..
-                headers = { 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36' }
-                              
+                headers = [{ 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36' },
+                             { 'User-Agent' :'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0'},
+                             { 'User-Agent' :'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'},
+                             { 'User-Agent' :'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'},
+                             { 'User-Agent' :'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36'},
+                             { 'User-Agent' :'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36'} ]   
                 
 
-                # rand_heads = random.randint(0,4)  # --->  randint() includes both params values....
+                rand_heads = random.randint(0,4)  # --->  randint() includes both params values....
             
                 print(url[i][0])
-                res = requests.get(url[i][0], headers = headers)
 
+                #random delay request to act as human...
+                time.sleep(random.randint(10,20))
+                res = requests.get(url[i][0], headers = headers[rand_heads])
+                 
             
                 if res.status_code == 200 :
                     print(res)
@@ -71,12 +78,12 @@ def schedulling_fun():
                         print(nxtpglink)
                     
               
-                    time.sleep(random.randint(5,9))
+                    time.sleep(random.randint(5,12))
 
                     #moving to next page....
                     
                     if nxtpglink.find("?") > 5:  #checking for updated link...
-                            res = requests.get(nxtpglink, headers = headers)
+                            res = requests.get(nxtpglink, headers =headers[rand_heads])
                             
                             soup = BeautifulSoup(res.text,'html.parser')
                             links = soup.find_all("iframe")
@@ -94,14 +101,19 @@ def schedulling_fun():
                                 ppr_name = ppr_name[ttl_siz]
                                 print("Captured Downldlink ---> ",full_dwnldlink)
                                 print(ppr_name)
-                            
+                                
 
 
-                            today = date.today()
-                            today_dt = today.strftime("%d")
+                            today_dt = datetime.datetime.now()
+                            today_dt = today_dt.strftime("%d")
+                            if today_dt[0]=="0":
+                               today_dt = today_dt.replace("0","")
+                                
+                              
+                              
                         
                             #checking with todays date with the uploaded date
-                            if int((ppr_name.find(today_dt))) > 1 :
+                            if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
                                     #downloading...
                                 
                                 # res = requests.get(full_dwnldlink, stream = True)
@@ -111,7 +123,7 @@ def schedulling_fun():
                                 msg = '<b>'+ ppr_name +"\n\nJOIN NOW:\t @allepaperadda\nOr Search:\t\tallepaperadda\n\n" +'</b>'+ full_dwnldlink
                                 print('Downloaded...OK')
                                 
-                                time.sleep(2)
+                                # time.sleep(2)
                                     #uploading to telegram channel...
                                 
                                 # bot.send_document(chat_id = chat_id, document = open('myfile/paper.pdf', 'rb'), caption = ppr_name +'@mychannel_link')
@@ -130,7 +142,7 @@ def schedulling_fun():
                     else:
                         print("Something error happend in links...")
                     
-                    time.sleep(random.randint(10,20))
+                    time.sleep(random.randint(2,4))
 
 
 
@@ -139,9 +151,12 @@ def schedulling_fun():
                         print("website down")         
 
 
-schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO GMT 01:40
-schedule.every().day.at("01:55").do(schedulling_fun)  #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
-schedule.every().day.at("01:30").do(reset_url_status)  
+schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO IST 07:10
+schedule.every().day.at("02:00").do(schedulling_fun)   #IST 07:30
+schedule.every().day.at("02:15").do(schedulling_fun)    #IST 07:45
+schedule.every().day.at("02:35").do(schedulling_fun)     #IST 08:05 #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
+schedule.every().day.at("02:50").do(schedulling_fun)    #IST 08:20
+
 while True:
   
     # Checks whether a scheduled task... 
