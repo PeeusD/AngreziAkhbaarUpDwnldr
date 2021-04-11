@@ -55,100 +55,106 @@ def schedulling_fun():
 
                 #random delay request to act as human...
                 time.sleep(random.randint(10,20))
-                res = requests.get(url[i][0], headers = headers[rand_heads])
-                 
-            
-                if res.status_code == 200 :
-                    print(res)
-                    soup = BeautifulSoup(res.text,'html.parser')
-
-
-                        #checking condition for the hindu....
-                    if i == 0:
-                        all_links = soup.select(".entry-content.mh-clearfix p a")
-
-                        nxtpglink = all_links[4].get('href')
-                        print(nxtpglink)
-                    else:      #else other epaper will come here
-
-                        all_links = soup.select(".entry-content p span a")
-                        #random delay between both the fetching request 
+                        
+                        
+                if url[i][1] == False: #chhecking that ppr already uploaded or not.... 
                     
-                        nxtpglink = all_links[0].get('href')
-                        print(nxtpglink)
-                    
-              
-                    time.sleep(random.randint(5,12))
-
-                    #moving to next page....
-                    
-                    if nxtpglink.find("?") > 5:  #checking for updated link...
-                            res = requests.get(nxtpglink, headers =headers[rand_heads])
-                            
+                        res = requests.get(url[i][0], headers = headers[rand_heads])  
+                        if res.status_code == 200 :
+                            print(res)
                             soup = BeautifulSoup(res.text,'html.parser')
-                            links = soup.find_all("iframe")
-                        
-                            for link in links:
-                                
-                                
-                                full_dwnldlink = link['src']
-                                dwnldlink = link['src'].split("?")
+
+
+                                #checking condition for the hindu....
+                            if i == 0:
+                                all_links = soup.select(".entry-content.mh-clearfix p a")
+
+                                nxtpglink = all_links[4].get('href')
+                                print(nxtpglink)
+                            else:      #else other epaper will come here
+
+                                all_links = soup.select(".entry-content p span a")
+                                #random delay between both the fetching request 
                             
-                                ppr_name = dwnldlink[0].split("/")
-                                
-
-                                ttl_siz = len(ppr_name)-1
-                                ppr_name = ppr_name[ttl_siz]
-                                print("Captured Downldlink ---> ",full_dwnldlink)
-                                print(ppr_name)
-                                
-
-
-                            today_dt = datetime.datetime.now()
-                            today_dt = today_dt.strftime("%d")
-                            if today_dt[0]=="0":
-                               today_dt = today_dt.replace("0","")
-                                
-                              
-                              
-                        
-                            #checking with todays date with the uploaded date
-                            if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
-                                    #downloading...
-                                
-                                # res = requests.get(full_dwnldlink, stream = True)
-                                # open('myfile/paper.pdf', 'wb').write(res.content)
-                        
-
-                                msg = '<b>'+ ppr_name +"\n\nJOIN NOW:\t @allepaperadda\nOr Search:\t\tallepaperadda\n\n" +'</b>'+ full_dwnldlink
-                                print('Downloaded...OK')
-                                
-                                # time.sleep(2)
-                                    #uploading to telegram channel...
-                                
-                                # bot.send_document(chat_id = chat_id, document = open('myfile/paper.pdf', 'rb'), caption = ppr_name +'@mychannel_link')
-                                if url[i][1] == False:
-                                    bot.send_message(chat_id = chat_id, text = msg, parse_mode = ParseMode.HTML )
-                                    print(' Uploaded!...OK')
-                                    url[i][1] = True
-                                else :
-                                    print("Epaper already uploaded!")
-
-
-                            else :
-                                print("Not uploaded yet....last Epaper was: ", ppr_name)
-
-                            #delay between next page which to be scrappped
-                    else:
-                        print("Something error happend in links...")
+                                nxtpglink = all_links[0].get('href')
+                                print(nxtpglink)
+                            
                     
-                    time.sleep(random.randint(2,4))
+                            time.sleep(random.randint(5,12))
+
+                            #moving to next page....
+                            
+                            if nxtpglink.find("?") > 5:  #checking for updated link...
+                                    res = requests.get(nxtpglink, headers =headers[rand_heads])
+                                    
+                                    soup = BeautifulSoup(res.text,'html.parser')
+                                    links = soup.find_all("iframe")
+                                
+                                    for link in links:
+                                        
+                                        
+                                        full_dwnldlink = link['src']
+                                        dwnldlink = link['src'].split("?")
+                                    
+                                        ppr_name = dwnldlink[0].split("/")
+                                        
+
+                                        ttl_siz = len(ppr_name)-1
+                                        ppr_name = ppr_name[ttl_siz]
+                                        print("Captured Downldlink ---> ",full_dwnldlink)
+                                        print(ppr_name)
+                                        
+
+
+                                    today_dt = datetime.datetime.now()
+                                    today_dt = today_dt.strftime("%d")
+                                    if today_dt[0]=="0":
+                                    today_dt = today_dt.replace("0","")
+                                        
+                                    
+                                    
+                                
+                                    #checking with todays date with the uploaded date
+                                    if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
+                                            #downloading...
+                                        
+                                        # res = requests.get(full_dwnldlink, stream = True)
+                                        # open('myfile/paper.pdf', 'wb').write(res.content)
+                                
+
+                                        msg = '<b>'+ ppr_name +"\n\nJOIN NOW:\t @allepaperadda\nOr Search:\t\tallepaperadda\n\n" +'</b>'+ full_dwnldlink
+                                        print('Downloaded...OK')
+                                        
+                                        # time.sleep(2)
+                                            #uploading to telegram channel...
+                                        
+                                        # bot.send_document(chat_id = chat_id, document = open('myfile/paper.pdf', 'rb'), caption = ppr_name +'@mychannel_link')
+                                        
+                                            bot.send_message(chat_id = chat_id, text = msg, parse_mode = ParseMode.HTML )
+                                            print(' Uploaded!...OK')
+                                            url[i][1] = True
+                
+
+
+                                    else :
+                                        print("Not uploaded yet....last Epaper was: ", ppr_name)
+
+                                    #delay between next page which to be scrappped
+                            else:
+                                print("Something error happend in links...")
+                            
+                            time.sleep(random.randint(2,4))
 
 
 
-       
-                else:
-                        print("website down")         
+            
+                        else:
+                            print("website down")         
+                else :
+                    print("Epaper already uploaded!")
+
+
+
 
 
 schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO IST 07:10
