@@ -32,7 +32,7 @@ url =  [
 def reset_url_status():
     for i in range(len(url)):
         url[i][1] = False
-    print("ran ur reset func")
+    print("-->RAN RESET FUNC....<----")
 
         
 
@@ -70,14 +70,14 @@ def schedulling_fun():
                                 all_links = soup.select(".entry-content.mh-clearfix p a")
 
                                 nxtpglink = all_links[4].get('href')
-                                print(nxtpglink)
+                                # print(nxtpglink)
                             else:      #else other epaper will come here
 
                                 all_links = soup.select(".entry-content p span a")
                                 #random delay between both the fetching request 
                             
                                 nxtpglink = all_links[0].get('href')
-                                print(nxtpglink)
+                                # print(nxtpglink)
                             
                     
                             time.sleep(random.randint(5,12))
@@ -101,7 +101,7 @@ def schedulling_fun():
 
                                         ttl_siz = len(ppr_name)-1
                                         ppr_name = ppr_name[ttl_siz]
-                                        print("Captured Downldlink ---> ",full_dwnldlink)
+                                        # print("Captured Downldlink ---> ",full_dwnldlink)
                                         print(ppr_name)
                                         
 
@@ -130,9 +130,9 @@ def schedulling_fun():
                                         
                                         # bot.send_document(chat_id = chat_id, document = open('myfile/paper.pdf', 'rb'), caption = ppr_name +'@mychannel_link')
                                         
-                                            bot.send_message(chat_id = chat_id, text = msg, parse_mode = ParseMode.HTML )
-                                            print(' Uploaded!...OK')
-                                            url[i][1] = True
+                                        bot.send_message(chat_id = chat_id, text = msg, parse_mode = ParseMode.HTML )
+                                        print(' Uploaded!...OK')
+                                        url[i][1] = True
                 
 
 
@@ -161,7 +161,7 @@ schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYW
 schedule.every().day.at("02:00").do(schedulling_fun)   #IST 07:30
 schedule.every().day.at("02:15").do(schedulling_fun)    #IST 07:45
 schedule.every().day.at("02:35").do(schedulling_fun)     #IST 08:05 #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
-schedule.every().day.at("02:50").do(schedulling_fun)    #IST 08:20
+schedule.every().day.at("01:25").do(schedulling_fun)    #IST 08:20
 
 while True:
   
