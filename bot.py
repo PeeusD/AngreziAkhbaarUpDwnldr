@@ -156,12 +156,12 @@ def schedulling_fun():
 
 
 
-
+schedule.every().day.at("01:25").do(reset_url_status)    #  reset_url_status
 schedule.every().day.at("01:40").do(schedulling_fun)   # FOR HEROKU/ PYTHON ANYWHERE DEPLOYMENT SET TO IST 07:10
 schedule.every().day.at("02:00").do(schedulling_fun)   #IST 07:30
 schedule.every().day.at("02:15").do(schedulling_fun)    #IST 07:45
 schedule.every().day.at("02:35").do(schedulling_fun)     #IST 08:05 #####  <--------------  CHANGE HERE FOR DEBUGGING  ------>
-schedule.every().day.at("01:25").do(schedulling_fun)    #IST 08:20
+schedule.every().day.at("02:50").do(schedulling_fun)  #ist 08:20
 
 while True:
   
