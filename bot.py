@@ -5,12 +5,12 @@ from telegram import Bot, ParseMode
 from telegram.ext import Updater
 from os import getenv
 from dotenv import load_dotenv
-#from datetime import date
+
 load_dotenv()
 import schedule
 
-TOKEN = getenv('TOKEN')
-chat_id = getenv('CHAT_ID')
+TOKEN = getenv('TOKEN')   #-------->CHANGE FOR  DEBUG
+chat_id = getenv('CHAT_ID')   #---------->CHANGE FOR  DEBUG
 bot = Bot(token=TOKEN)
 
 print("----> RUNNING UR PYTHON SCRAPPER SCHEDULLER...")
@@ -54,7 +54,10 @@ def schedulling_fun():
                 #random delay request to act as human...
                 time.sleep(random.randint(10,20))
                         
-                        
+                today_dt = datetime.datetime.now()
+                today_dt = today_dt.strftime("%d")
+                if today_dt[0]=="0":
+                    today_dt = today_dt.replace("0","")        
                 if url[i][1] == False: #chhecking that ppr already uploaded or not.... 
 
                         res = requests.get(url[i][0], headers = headers[rand_heads])  
@@ -66,15 +69,21 @@ def schedulling_fun():
                                 #checking condition for the hindu....
                             if i == 0:
                                 all_links = soup.select(".entry-content.mh-clearfix p a")
+                                newlinks = soup.select("h4~ p")
+                                newlinks = str(newlinks[0]).find("<a href")
                                 nxtpglink = all_links[4].get('href')
-                                print(nxtpglink)
+                                #print(newlinks)
 
-                                if nxtpglink.find("drive") > 5:     #drive link checking...
+                                if nxtpglink.find("drive") > 5 and newlinks > 0:     #drive link checking...
                                     bot.send_message(chat_id = chat_id, text = "<b>The HINDU G-drive link:\tJoin:\t@allepaperadda</b>\n"+ nxtpglink, parse_mode = ParseMode.HTML )
                                     print(' Uploaded!...OK')
                                     url[i][1] = True
+
+                                else:
+                                    print("err")    
                                          #skip the vk.com link as drivelink present....
                             else:      #else other epaper will come here
+
 
                                 all_links = soup.select(".entry-content p span a")
                                 #random delay between both the fetching request 
@@ -108,13 +117,6 @@ def schedulling_fun():
                                             print(ppr_name)
                                                 
 
-
-                                        today_dt = datetime.datetime.now()
-                                        today_dt = today_dt.strftime("%d")
-                                        if today_dt[0]=="0":
-                                            today_dt = today_dt.replace("0","")
-                                                
-
                                             #checking with todays date with the uploaded date
                                         if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
                                                     #downloading...
@@ -135,7 +137,6 @@ def schedulling_fun():
                                                 print('Uploaded!...OK')
                                                 url[i][1] = True
                         
-                                                
                                                 time.sleep(random.randint(2,4)) #delay between next page which to be scrappped
 
 
@@ -144,14 +145,11 @@ def schedulling_fun():
 
                             
                             elif nxtpglink.find("drive") > 5 :
-                                    print("Hindu gdrive link posted!")
-                                
-                                                
+                                    print("Hindu gdrive link posted! its not vk.com link")
+                    
                             else:
                                 print("Something error happend in links...")
-                           
-
-            
+   
                         else:
                             print("website down")         
                 else :
