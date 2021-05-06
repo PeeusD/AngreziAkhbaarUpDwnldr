@@ -80,7 +80,7 @@ def schedulling_fun():
                                     url[i][1] = True
 
                                 else:
-                                    print("err")    
+                                    print("This is vk.com link")    
                                          #skip the vk.com link as drivelink present....
                             else:      #else other epaper will come here
 
@@ -118,7 +118,7 @@ def schedulling_fun():
                                                 
 
                                             #checking with todays date with the uploaded date
-                                        if int((ppr_name.replace("2021","").find(today_dt))) > 1 :
+                                        if int((ppr_name.replace("2021","").find(today_dt))) > -1 :
                                                     #downloading...
                                                 
                                                 # res = requests.get(full_dwnldlink, stream = True)
