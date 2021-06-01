@@ -18,8 +18,7 @@ print("----> RUNNING UR PYTHON SCRAPPER SCHEDULLER...")
         
 url =  [
                # scrapping these webapages on by one...
-        ["https://dailyepaper.in/the-hindu-pdf-epaper-download", False],
-        ["https://dailyepaper.in/indian-express-epaper", False],
+        
         ["https://dailyepaper.in/times-of-india-epaper-pdf-download-2020", False],
         ["https://dailyepaper.in/economic-times-newspaper-today", False],
         ["https://dailyepaper.in/financial-express-newspaper", False],
@@ -67,28 +66,28 @@ def schedulling_fun():
 
 
                                 #checking condition for the hindu....
-                            if i == 0:
-                                all_links = soup.select(".entry-content.mh-clearfix p a")
-                                newlinks = soup.select("h4~ p")
-                                newlinks = str(newlinks[0]).find("<a href")
-                                nxtpglink = all_links[4].get('href')
+                            #if i == 0:
+                                #all_links = soup.select(".entry-content.mh-clearfix p a")
+                               # newlinks = soup.select("h4~ p")
+                               # newlinks = str(newlinks[0]).find("<a href")
+                               # nxtpglink = all_links[4].get('href')
                                 #print(newlinks)
 
-                                if nxtpglink.find("drive") > 5 and newlinks > 0:     #drive link checking...
-                                    bot.send_message(chat_id = chat_id, text = "<b>The HINDU G-drive link:\tJoin:\t@allepaperadda</b>\n"+ nxtpglink, parse_mode = ParseMode.HTML )
-                                    print(' Uploaded!...OK')
-                                    url[i][1] = True
+                              #  if nxtpglink.find("drive") > 5 and newlinks > 0:     #drive link checking...
+                                 #   bot.send_message(chat_id = chat_id, text = "<b>The HINDU G-drive link:\tJoin:\t@allepaperadda</b>\n"+ nxtpglink, parse_mode = ParseMode.HTML )
+                                 #   print(' Uploaded!...OK')
+                                  #  url[i][1] = True
 
-                                else:
-                                    print("This is vk.com link")    
+                             #   else:
+                                #    print("This is vk.com link")    
                                          #skip the vk.com link as drivelink present....
-                            else:      #else other epaper will come here
+                          #  else:      #else other epaper will come here
 
 
-                                all_links = soup.select(".entry-content p span a")
+                            all_links = soup.select(".entry-content p span a")
                                 #random delay between both the fetching request 
                             
-                                nxtpglink = all_links[0].get('href')
+                            nxtpglink = all_links[0].get('href')
                                 # print(nxtpglink)
                             
                     
@@ -144,8 +143,8 @@ def schedulling_fun():
                                                 print("Not uploaded yet....last Epaper was: ", ppr_name)
 
                             
-                            elif nxtpglink.find("drive") > 5 :
-                                    print("Hindu gdrive link posted! its not vk.com link")
+                            #elif nxtpglink.find("drive") > 5 :
+                                    #print("Hindu gdrive link posted! its not vk.com link")
                     
                             else:
                                 print("Something error happend in links...")
