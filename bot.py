@@ -18,7 +18,7 @@ print("----> RUNNING UR PYTHON SCRAPPER SCHEDULLER...")
         
 url =  [
                # scrapping these webapages on by one...
-        
+        ["https://dailyepaper.in/the-hindu-pdf-epaper-download-2021", False],
         ["https://dailyepaper.in/times-of-india-epaper-pdf-download-2020", False],
         ["https://dailyepaper.in/economic-times-newspaper-today", False],
         ["https://dailyepaper.in/financial-express-newspaper", False],
