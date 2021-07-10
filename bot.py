@@ -124,7 +124,7 @@ def schedulling_fun():
                                                 # open('myfile/paper.pdf', 'wb').write(res.content)
                                         
 
-                                                msg = '<b>'+ ppr_name +"\n\nJOIN NOW:\t @allepaperadda\nOr Search:\t\tallepaperadda\n\n" +'</b>'+ full_dwnldlink
+                                                msg = '<b>'+ ppr_name +"\n\nJOIN NOW:\t @dailynewspaperrrrr\n\n" +'</b>'+ full_dwnldlink
                                                 print('Downloaded...OK')
                                                 
                                                 # time.sleep(2)
