@@ -1,7 +1,9 @@
 ﻿# AngreziAkhbaarUpDwnldr
 
 <hr>
+
 ### Scrapped Website- https://dailyepaper.in/
+
 ## How to deploy on heroku:~
 
 - [ ] First fork this repo.
