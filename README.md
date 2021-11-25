@@ -4,6 +4,13 @@
 
 ### Scrapped Website- https://dailyepaper.in/
 
+### Library Used-
+- [ ] beautifulsoup4
+- [ ] requests
+- [ ] python-telegram-bot
+- [ ] python-dotenv
+schedule
+
 ## How to deploy on heroku:~
 
 - [ ] First fork this repo.
