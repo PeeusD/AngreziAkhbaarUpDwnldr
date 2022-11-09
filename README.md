@@ -1,4 +1,4 @@
-﻿# AngreziAkhbaarUpDwnldr
+﻿# AngreziAkhbaarScrapper
 
 <hr>
 
@@ -29,3 +29,8 @@ schedule
 **Note: Add your BOT TOKEN and YOUR GROUP ID (can be integer or group name)**
 ## Redeploy the branch in your app. 
 **Enjoy  ;)**
+
+
+# Jal Jeevan Gov Websites Scrapper
+## Scrapped All data from HTML tables and stored into CSV file. (Use cases)- helps in working with HTML pages.
+
