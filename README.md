@@ -16,7 +16,7 @@
 
 <hr>
 
-## Add the credentials (Telegram GROUP Id/name, Bot TOKEN ) in your CONFIG VARS tab of your app like this:
+### Add the credentials (Telegram GROUP Id/name, Bot TOKEN ) in your CONFIG VARS tab of your app like this:
 ```TOKEN```     ```BOT TOKEN```      Ex:    76989897:fjf3553o5353353jjn
 <br>
 
@@ -27,7 +27,7 @@
 **Enjoy  ;)**
 
 
-# 2.Jal Jeevan Gov Websites Scrapper
-## Scrapped All data from HTML tables and stored into CSV file. (Use cases)- helps in working with HTML pages.
+## 2.Jal Jeevan Gov Websites Scrapper
+### Scrapped All data from HTML tables and stored into CSV file. (Use cases)- helps in working with HTML pages.
 
 ### Scrapped Website- https://ejalshakti.gov.in
