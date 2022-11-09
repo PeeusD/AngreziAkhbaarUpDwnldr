@@ -55,17 +55,64 @@ def schedulling_fun():
                         if res.status_code == 200 :
                             print(res)
                             soup = BeautifulSoup(res.text,'html.parser')
-                                
-                          
+                                #checking condition for the hindu....
+                            #if i == 0:
+                                #all_links = soup.select(".entry-content.mh-clearfix p a")
+                               # newlinks = soup.select("h4~ p")
+                               # newlinks = str(newlinks[0]).find("<a href")
+                               # nxtpglink = all_links[4].get('href')
+                                #print(newlinks)
+
+                              #  if nxtpglink.find("drive") > 5 and newlinks > 0:     #drive link checking...
+                                 #   bot.send_message(chat_id = chat_id, text = "<b>The HINDU G-drive link:\tJoin:\t@allepaperadda</b>\n"+ nxtpglink, parse_mode = ParseMode.HTML )
+                                 #   print(' Uploaded!...OK')
+                                  #  url[i][1] = True
+
+                             #   else:
+                                #    print("This is vk.com link")    
+                                         #skip the vk.com link as drivelink present....
+                          #  else:      #else other epaper will come here
+
                             all_links = soup.select(".entry-content p span a")
-                            d_link =[]
-                            for i in range(7):
-                                d_link.append(all_links[i].get('href'))
-                                print(f'link {d_link[i]}')
-                         
+
+                                #random delay between both the fetching request 
+                            d_link = all_links[0].get('href')
+                            print("first pg link >",d_link)
+                            time.sleep(random.randint(5,12))
 
                             
-                           
+                            #moving to next page....
+                            if d_link.find("vk.com") > 5: # verifying next pg vk.com link...
+                                if d_link.find("?") > 5:  #checking for updated link...
+                                        res = requests.get(d_link, headers = headers[rand_heads])
+                                            
+                                        soup = BeautifulSoup(res.text,'html.parser')
+                                        links = soup.find_all("iframe")
+                                        
+                                        for link in links:    
+                                            full_dwnldlink = link['src']
+                                            dwnldlink = link['src'].split("?")
+                                            
+                                            ppr_name = dwnldlink[0].split("/")
+                                            ttl_siz = len(ppr_name)-1
+                                            ppr_name = ppr_name[ttl_siz]
+                                                # print("Captured Downldlink ---> ",full_dwnldlink)
+                                            # print(ppr_name)
+                                            #checking with todays date with the uploaded date
+                                        if int((ppr_name.replace("2021","").find(today_dt))) > -1 :
+                                            
+                                                msg = f" Paper Name-> {ppr_name} Link-> {full_dwnldlink}"
+                                                print('Status..OK\n', msg)
+                                                url[i][1] = True
+                        
+                                                time.sleep(random.randint(2,4)) #delay between next page which to be scrappped
+                                        else :
+                                            print("Not uploaded yet....last Epaper was: ", ppr_name)
+
+                            #elif nxtpglink.find("drive") > 5 :
+                                    #print("Hindu gdrive link posted! its not vk.com link")
+                            else:
+                                print("Something error happend in links...") 
                         else:
                             print("website down")         
                 else :
