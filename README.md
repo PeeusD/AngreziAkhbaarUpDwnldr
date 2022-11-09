@@ -1,8 +1,8 @@
 ﻿# Scrapping Websites for fun and learning :)
 
-## AngreziAkhbaarScrapper
+## 1.AngreziAkhbaarScrapper
 
-<hr>
+
 
 ### Scrapped Website- https://dailyepaper.in/
 
@@ -27,7 +27,7 @@
 **Enjoy  ;)**
 
 
-# Jal Jeevan Gov Websites Scrapper
+# 2.Jal Jeevan Gov Websites Scrapper
 ## Scrapped All data from HTML tables and stored into CSV file. (Use cases)- helps in working with HTML pages.
 
 ### Scrapped Website- https://ejalshakti.gov.in
