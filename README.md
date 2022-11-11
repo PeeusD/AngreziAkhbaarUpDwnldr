@@ -34,7 +34,9 @@
 ## 3.Amazon Review Scrapper (Use Case for any product)
 - [ ] Scrapping with multiple random time delay 
 - [ ]  muliple random User-Agent
+- [ ]  For multiple pages
 
 ## 4.Flipkart Review Scrapper (Use Case for any product)
 - [ ] Scrapping with multiple random time delay 
 - [ ]  muliple random User-Agent
+- [ ]  For multiple pages
