@@ -29,10 +29,12 @@
 
 ## 2.Jal Jeevan Gov Websites Scrapper
 ### Scrapped All data from HTML tables and stored into CSV file. (Use cases)- helps in working with HTML pages.
-### Scrapped Website- https://ejalshakti.gov.in
+- [ ] Scrapped Website- https://ejalshakti.gov.in
 
 ## 3.Amazon Review Scrapper (Use Case for any product)
-### Scrapping with multiple random time delay with muliple random User-Agent
+- [ ] Scrapping with multiple random time delay 
+- [ ]  muliple random User-Agent
 
 ## 4.Flipkart Review Scrapper (Use Case for any product)
-### Scrapping with multiple random time delay with muliple random User-Agent
+- [ ] Scrapping with multiple random time delay 
+- [ ]  muliple random User-Agent
