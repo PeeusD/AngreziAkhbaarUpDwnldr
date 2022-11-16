@@ -42,3 +42,7 @@
 - [ ] Used for any product url
 - [ ]  muliple random User-Agent
 - [ ]  For multiple pages
+
+## 5.The Hindu Editorial Scraper
+- [ ] Provides you the details of title, subtitle, description, publish Date etc.
+- [ ] Loads you in json format.
