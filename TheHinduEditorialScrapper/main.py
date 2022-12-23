@@ -1,5 +1,5 @@
 from urllib import request
-from dictionary import word_searching
+# from dictionary import word_searching
 from bs4 import BeautifulSoup as bs
 import requests, random
 import time

@@ -4,25 +4,26 @@ import time, random, datetime
 import schedule
 
 print("----> RUNNING UR PYTHON SCRAPPER SCHEDULLER...")
-    
+
+dwld_status = False    
         
 url =  [
                # scrapping these webapages on by one...
-        ["https://dailyepaper.in/the-hindu-pdf-free-download-25-nov-2021", False],
-        ["https://dailyepaper.in/hindu-analysis-notes-in-pdf-download-oct-2021", False],
-        ["https://dailyepaper.in/times-of-india-epaper-pdf-download-2020", False],
-        ["https://dailyepaper.in/economic-times-newspaper-today", False],
-        ["https://dailyepaper.in/financial-express-newspaper", False],
-        ["https://dailyepaper.in/deccan-chronicle-epaper", False],  
-        ["https://dailyepaper.in/the-tribune-epaper", False],
-        ["https://dailyepaper.in/statesman-newspaper-today", False],
-        ["https://dailyepaper.in/the-asian-age-epaper", False],
-        ["https://dailyepaper.in/telegraph-newspaper",False] 
+       
+        ["https://dailyepaper.in/hindu-analysis-notes-in-pdf-2022/", dwld_status],
+        ["https://dailyepaper.in/times-of-india-epaper-pdf-download-2022/", dwld_status],
+        ["https://dailyepaper.in/economic-times-newspaper-today", dwld_status],
+        ["https://dailyepaper.in/financial-express-newspaper", dwld_status],
+        ["https://dailyepaper.in/deccan-chronicle-epaper", dwld_status],  
+        ["https://dailyepaper.in/the-tribune-epaper", dwld_status],
+        ["https://dailyepaper.in/statesman-newspaper-today", dwld_status],
+        ["https://dailyepaper.in/the-asian-age-epaper", dwld_status],
+        ["https://dailyepaper.in/telegraph-newspaper",dwld_status] 
         ]
 
 def reset_url_status():
     for i in range(len(url)):
-        url[i][1] = False
+        url[i][1] = dwld_status
     print("-->RAN RESET FUNC....<----")
 
 def schedulling_fun():   
@@ -49,8 +50,7 @@ def schedulling_fun():
                 today_dt = today_dt.strftime("%d")
                 if today_dt[0]=="0":
                     today_dt = today_dt.replace("0","")        
-                if url[i][1] == False: #chhecking that ppr already uploaded or not.... 
-
+                if url[i][1] == dwld_status: #chhecking that ppr already uploaded or not.... 
                         res = requests.get(url[i][0], headers = headers[rand_heads])  
                         if res.status_code == 200 :
                             print(res)
@@ -63,9 +63,7 @@ def schedulling_fun():
                                 d_link.append(all_links[i].get('href'))
                                 print(f'link {d_link[i]}')
                          
-
-                            
-                           
+  
                         else:
                             print("website down")         
                 else :
